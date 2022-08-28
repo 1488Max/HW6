@@ -41,9 +41,10 @@
             <thead>
             <tr>
                 <th>ID</th>
+                <th>Name</th>
                 <th>Time Of Creation</th>
-                <th>Customer ID</th>
-                <th>Company ID</th>
+                <th>Customer</th>
+                <th>Company </th>
 
             </tr>
             </thead>
@@ -55,11 +56,10 @@
                     <td><c:out value="${project.id}" /></td>
                     <td><c:out value="${project.name}" /></td>
                     <td><c:out value="${project.time_of_creation}" /></td>
-                    <td><c:out value="${project.customer_id}" /></td>
-                    <td><c:out value="${project.company_id}" /></td>
+                    <td><c:out value="${project.customer}" /></td>
+                    <td><c:out value="${project.company}" /></td>
                     <td><a href="editProject?id=<c:out value='${project.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp; <a
-                                href="deleteProject?id=<c:out value='${project.id}' />">Delete</a></td>
+                        <a href="deleteProject?id=<c:out value='${project.id}' />">Delete</a></td>
                 </tr>
             </c:forEach>
             <!-- } -->

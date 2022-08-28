@@ -60,15 +60,15 @@
                     </fieldset>
 
                     <fieldset class="form-group">
-                        <label>Customer ID</label> <input type="number"
-                                                               value="<c:out value='${project.customer_id}' />" class="form-control"
-                                                               name="customer_id">
+                        <label>Customer</label> <input type="text"
+                                                               value="<c:out value='${project.customer}' />" class="form-control"
+                                                               name="customer">
                     </fieldset>
 
                         <fieldset class="form-group">
-                            <label>Company ID</label> <input type="number"
-                                                                   value="<c:out value='${project.company_id}' />" class="form-control"
-                                                                   name="company_id">
+                            <label>Company</label> <input type="text "
+                                                                   value="<c:out value='${project.company}' />" class="form-control"
+                                                                   name="company">
                         </fieldset>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>

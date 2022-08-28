@@ -1,11 +1,11 @@
 package Servlets;
 
-import CrudServices.CustomerCrudService;
-import CrudServices.DeveloperCrudService;
-import CrudServices.ProjectCrudService;
 import Entities.Customer;
 import Entities.Developer;
 import Entities.Project;
+import HibernateDao.CustomerDao;
+import HibernateDao.DeveloperDao;
+import HibernateDao.ProjectDao;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,12 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/")
-public class DevServlet extends HttpServlet {
+public class Servlet extends HttpServlet {
 
-
-    public void init() {
-        DeveloperCrudService developerCrudService = new DeveloperCrudService();
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -102,7 +98,7 @@ public class DevServlet extends HttpServlet {
 
     private void listDeveloper(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Developer> listDeveloper = DeveloperCrudService.getAllDevelopers();
+        List<Developer> listDeveloper = DeveloperDao.getAllDevelopers();
         request.setAttribute("listDeveloper", listDeveloper);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewDevelopers.jsp");
         dispatcher.forward(request, response);
@@ -117,7 +113,7 @@ public class DevServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Developer developer = DeveloperCrudService.getById(id);
+        Developer developer = DeveloperDao.getDeveloper(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Developers-form.jsp");
         request.setAttribute("developer", developer);
         dispatcher.forward(request, response);
@@ -130,7 +126,7 @@ public class DevServlet extends HttpServlet {
         String sex = request.getParameter("sex");
         int salary = Integer.parseInt(request.getParameter("salary"));
         Developer developer = new Developer(name, sex, salary);
-        DeveloperCrudService.create(developer);
+        DeveloperDao.createDeveloper(developer);
         response.sendRedirect("ViewDevelopers.jsp");
     }
 
@@ -142,20 +138,20 @@ public class DevServlet extends HttpServlet {
         int salary = Integer.parseInt(request.getParameter("salary"));
 
         Developer developer = new Developer(id, name, sex, salary);
-        DeveloperCrudService.updateDeveloper(developer);
+        DeveloperDao.updateDeveloper(developer,id);
         response.sendRedirect("ViewDevelopers.jsp");
     }
 
     private void deleteDeveloper(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        DeveloperCrudService.deleteByID(id);
+        DeveloperDao.deleteDeveloper(id);
         response.sendRedirect("ViewDevelopers.jsp");
 
     }
     private void listCustomer(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Customer> listCustomer = CustomerCrudService.getAllCustomers();
+        List<Customer> listCustomer = CustomerDao.getAllCustomers();
         request.setAttribute("listCustomer", listCustomer);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewCustomer.jsp");
         dispatcher.forward(request, response);
@@ -170,7 +166,7 @@ public class DevServlet extends HttpServlet {
     private void showEditFormCustomer(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Customer customer = CustomerCrudService.getById(id);
+        Customer customer = CustomerDao.getCustomer(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Customer-form.jsp");
         request.setAttribute("customer", customer);
         dispatcher.forward(request, response);
@@ -182,7 +178,7 @@ public class DevServlet extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
         Customer customer = new Customer(name,surname);
-        CustomerCrudService.create(customer);
+        CustomerDao.createCustomer(customer);
         response.sendRedirect("ViewCustomer.jsp");
     }
 
@@ -193,7 +189,7 @@ public class DevServlet extends HttpServlet {
         String surname = request.getParameter("surname");
 
         Customer customer = new Customer(name,surname);
-        CustomerCrudService.updateCustomer(customer);
+        CustomerDao.updateCustomer(customer,id);
         response.sendRedirect("ViewCustomer.jsp");
 
     }
@@ -201,14 +197,14 @@ public class DevServlet extends HttpServlet {
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        CustomerCrudService.deleteByID(id);
+        CustomerDao.deleteCustomer(id);
         response.sendRedirect("ViewCustomer.jsp");
 
     }
 
     private void listProject(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        List<Project> listProject = ProjectCrudService.getAllProjects();
+        List<Project> listProject = ProjectDao.getAllProjects();
         request.setAttribute("listProject", listProject);
         RequestDispatcher dispatcher = request.getRequestDispatcher("ViewProject.jsp");
         dispatcher.forward(request, response);
@@ -223,7 +219,7 @@ public class DevServlet extends HttpServlet {
     private void showEditFormProject(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Project project = ProjectCrudService.getById(id);
+        Project project = ProjectDao.getProject(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Project-form.jsp");
         request.setAttribute("project", project);
         dispatcher.forward(request, response);
@@ -238,7 +234,7 @@ public class DevServlet extends HttpServlet {
         long companyId = Long.parseLong(request.getParameter("company_id"));
 
 
-        ProjectCrudService.create(new Project(name,time_of_creation,customerId,customerId));
+        ProjectDao.createProject(new Project(name,time_of_creation,customerId,customerId));
         response.sendRedirect("ViewProject.jsp");
     }
 
@@ -250,7 +246,7 @@ public class DevServlet extends HttpServlet {
         long customerId = Long.parseLong(request.getParameter("customer_id"));
         long companyId = Long.parseLong(request.getParameter("company_id"));
 
-        ProjectCrudService.updateProject(new Project(name,time_of_creation,customerId,companyId));
+        ProjectDao.updateProject(new Project(name,time_of_creation,customerId,companyId),id);
         response.sendRedirect("ViewProject.jsp");
 
     }
@@ -258,7 +254,7 @@ public class DevServlet extends HttpServlet {
     private void deleteProject(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        ProjectCrudService.deleteByID(id);
+        ProjectDao.deleteProject(id);
         response.sendRedirect("ViewProject.jsp");
 
     }

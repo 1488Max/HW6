@@ -28,16 +28,6 @@ Create table skill
     skill      varchar(100),
     primary key(id)
 );
-
-
-CREATE table developer_skill
-(
-    developer_id bigint not null,
-    skill_id     bigint not null,
-
-    FOREIGN KEY (developer_id) REFERENCES developer(id),
-    FOREIGN KEY (skill_id) REFERENCES skill(id)
-);
 Create table project
 (
     id BIGINT AUTO_INCREMENT  ,
@@ -49,6 +39,16 @@ Create table project
     foreign key (company_id) REFERENCES company(id),
     primary key(id)
 );
+
+CREATE table developer_skill
+(
+    developer_id bigint not null,
+    skill_id     bigint not null,
+
+    FOREIGN KEY (developer_id) REFERENCES developer(id),
+    FOREIGN KEY (skill_id) REFERENCES skill(id)
+);
+
 
 
 
