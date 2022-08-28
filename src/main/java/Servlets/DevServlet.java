@@ -233,12 +233,12 @@ public class DevServlet extends HttpServlet {
     private void insertProject(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         String name = request.getParameter("name");
-        String timeOfCreation = request.getParameter("timeOfCreation");
-        long customerId = Long.parseLong(request.getParameter("customerId"));
-        long companyId = Long.parseLong(request.getParameter("companyId"));
+        String time_of_creation = request.getParameter("time_of_creation");
+        long customerId = Long.parseLong(request.getParameter("customer_id"));
+        long companyId = Long.parseLong(request.getParameter("company_id"));
 
 
-        ProjectCrudService.create(new Project(name,timeOfCreation,customerId,customerId));
+        ProjectCrudService.create(new Project(name,time_of_creation,customerId,customerId));
         response.sendRedirect("ViewProject.jsp");
     }
 
@@ -246,11 +246,11 @@ public class DevServlet extends HttpServlet {
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
-        String timeOfCreation = request.getParameter("timeOfCreation");
-        long customerId = Long.parseLong(request.getParameter("customerId"));
-        long companyId = Long.parseLong(request.getParameter("companyId"));
+        String time_of_creation = request.getParameter("time_of_creation");
+        long customerId = Long.parseLong(request.getParameter("customer_id"));
+        long companyId = Long.parseLong(request.getParameter("company_id"));
 
-        ProjectCrudService.updateProject(new Project(name,timeOfCreation,customerId,companyId));
+        ProjectCrudService.updateProject(new Project(name,time_of_creation,customerId,companyId));
         response.sendRedirect("ViewProject.jsp");
 
     }

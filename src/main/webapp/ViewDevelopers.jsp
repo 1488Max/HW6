@@ -70,7 +70,7 @@
 
 	<a href="<%=request.getContextPath()%>/listCustomer">View Customer</a><br>
 
-	<a href="ViewProject.jsp">View Project</a><br>
+	<a href="<%=request.getContextPath()%>/listProject">View Project</a><br>
 
 </body>
 </html>

@@ -49,14 +49,14 @@
             </thead>
             <tbody>
             <!--   for (Todo todo: todos) {  -->
-            <c:forEach var="project" items="${listPro   ject}">
+            <c:forEach var="project" items="${listProject}">
 
                 <tr>
                     <td><c:out value="${project.id}" /></td>
                     <td><c:out value="${project.name}" /></td>
-                    <td><c:out value="${project.timeOfCreation}" /></td>
-                    <td><c:out value="${project.customerId}" /></td>
-                    <td><c:out value="${project.companyId}" /></td>
+                    <td><c:out value="${project.time_of_creation}" /></td>
+                    <td><c:out value="${project.customer_id}" /></td>
+                    <td><c:out value="${project.company_id}" /></td>
                     <td><a href="editProject?id=<c:out value='${project.id}' />">Edit</a>
                         &nbsp;&nbsp;&nbsp;&nbsp; <a
                                 href="deleteProject?id=<c:out value='${project.id}' />">Delete</a></td>

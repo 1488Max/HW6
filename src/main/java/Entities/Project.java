@@ -5,19 +5,19 @@ import lombok.Data;
 public @Data class Project {
     protected long id;
     protected String name;
-    protected String timeOfCreation;
-    protected long customerId;
-    protected long companyId;
+    protected String time_of_creation;
+    protected long customer_id;
+    protected long company_id;
 
-    public Project(String name, String timeOfCreation) {
+    public Project(String name, String time_of_creation) {
         this.name = name;
-        this.timeOfCreation = timeOfCreation;
+        this.time_of_creation = time_of_creation;
     }
 
-    public Project(String name, String timeOfCreation, long customerId, long companyId) {
+    public Project(String name, String time_of_creation, long customer_id, long company_id) {
         this.name = name;
-        this.timeOfCreation = timeOfCreation;
-        this.customerId = customerId;
-        this.companyId = companyId;
+        this.time_of_creation = time_of_creation;
+        this.customer_id = customer_id;
+        this.company_id = company_id;
     }
 }

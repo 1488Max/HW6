@@ -120,9 +120,9 @@ public class ProjectCrudService {
 
     public static int create(Project project) throws SQLException {
         createSt.setString(1, project.getName());
-        createSt.setString(2, project.getTimeOfCreation().toString());
-        createSt.setLong(3, project.getCustomerId());
-        createSt.setLong(4, project.getCompanyId());
+        createSt.setString(2, project.getTime_of_creation().toString());
+        createSt.setLong(3, project.getCustomer_id());
+        createSt.setLong(4, project.getCompany_id());
         return createSt.executeUpdate();
 
     }
@@ -202,9 +202,9 @@ public class ProjectCrudService {
     public static int updateProject(Project project) throws SQLException {
 
         updateSt.setString(1, project.getName());
-        updateSt.setString(2, project.getTimeOfCreation());
-        updateSt.setLong(3, project.getCustomerId());
-        updateSt.setLong(4, project.getCompanyId());
+        updateSt.setString(2, project.getTime_of_creation());
+        updateSt.setLong(3, project.getCustomer_id());
+        updateSt.setLong(4, project.getCompany_id());
         updateSt.setLong(5,project.getId());
 
         return updateSt.executeUpdate();

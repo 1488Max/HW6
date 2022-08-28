@@ -55,20 +55,20 @@
 
                     <fieldset class="form-group">
                         <label>Project Time Of Creation</label> <input type="datetime-local"
-                                                            value="<c:out value='${project.timeOfCreation}' />" class="form-control"
-                                                            name="timeOfCreation">
+                                                            value="<c:out value='${project.time_of_creation}' />" class="form-control"
+                                                            name="time_of_creation">
                     </fieldset>
 
                     <fieldset class="form-group">
                         <label>Customer ID</label> <input type="number"
-                                                               value="<c:out value='${project.customerId}' />" class="form-control"
-                                                               name="customerId">
+                                                               value="<c:out value='${project.customer_id}' />" class="form-control"
+                                                               name="customer_id">
                     </fieldset>
 
                         <fieldset class="form-group">
                             <label>Company ID</label> <input type="number"
-                                                                   value="<c:out value='${project.companyId}' />" class="form-control"
-                                                                   name="companyId">
+                                                                   value="<c:out value='${project.company_id}' />" class="form-control"
+                                                                   name="company_id">
                         </fieldset>
                     <button type="submit" class="btn btn-success">Save</button>
                 </form>
