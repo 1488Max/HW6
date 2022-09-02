@@ -1,73 +1,21 @@
 package Entities;
 
-import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
-import java.util.List;
-
-@Entity
-@RequiredArgsConstructor
-@Table(name = "customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+public @Data class Customer {
     private long id;
+    private String name;
+    private String surname;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
+    public Customer(long id, String name, String surname) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
         this.surname = surname;
     }
 
-    public List<Project> getProjects() {
-        return projects;
+    public Customer(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+
     }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                '}';
-    }
-
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
-    }
-
-    @Column(name = "name")
-    @NonNull
-    private String name;
-
-    @Column(name = "surname")
-    @NonNull
-    private String surname;
-
-
-    @OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
-    private List<Project> projects;
-
-    public Customer() {}
 }

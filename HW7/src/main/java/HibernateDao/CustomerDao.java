@@ -1,67 +1,66 @@
 package HibernateDao;
 
-import Entities.Developer;
-import Entities.Project;
+import Entities.Customer;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 
 import java.util.List;
 
 
-public class ProjectDao {
-    public static void createProject(Project project) {
+public class CustomerDao {
+    public static void createCustomer(Customer customer) {
 
         SessionFactory sessionFactory = HibernateDao.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        session.save(project);
+        session.saveOrUpdate(customer);
 
         session.getTransaction().commit();
 
     }
 
-    public static Project getProject(long id) {
+    public static Customer getCustomer(long id) {
 
         SessionFactory sessionFactory = HibernateDao.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Project project = session.get(Project.class, id);
+        Customer customer = session.get(Customer.class, id);
         session.getTransaction().commit();
 
-        return project;
+        return customer;
     }
 
-    public static void updateProject(Project project, long id) {
+    public static void updateCustomer(Customer customer, long id) {
 
         SessionFactory sessionFactory = HibernateDao.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        Project newProject = session.get(Project.class, id);
-        newProject.setName(project.getName());
-        newProject.setTime_of_creation(project.getTime_of_creation());
-        newProject.setCustomer(project.getCustomer());
-        newProject.setCompany(project.getCompany());
-        session.getTransaction().commit();
-
-    }
-
-    public static void deleteProject(long id) {
-
-        SessionFactory sessionFactory = HibernateDao.getSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        Project project= session.get(Project.class, id);
-        session.remove(project);
+        Customer newCustomer = session.get(Customer.class, id);
+        newCustomer.setName(customer.getName());
+        newCustomer.setSurname(customer.getSurname());
         session.getTransaction().commit();
 
     }
 
-    public static List<Project> getAllProjects() {
+    public static void deleteCustomer(long id) {
+
+        SessionFactory sessionFactory = HibernateDao.getSessionFactory();
+        Session session = sessionFactory.getCurrentSession();
+        session.beginTransaction();
+        Customer customer = session.get(Customer.class, id);
+        session.remove(customer);
+        session.getTransaction().commit();
+
+    }
+
+    public static List<Customer> getAllCustomers() {
         SessionFactory sessionFactory = HibernateDao.getSessionFactory();
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
 
-        return session.createQuery("select a from Project a",Project.class)
+        return session.createQuery("select a from Customer a", Customer.class)
                 .getResultList();
     }
 
