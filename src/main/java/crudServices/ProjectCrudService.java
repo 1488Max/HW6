@@ -25,7 +25,7 @@ public class ProjectCrudService {
     static {
         {
             try {
-                createSt = connection.prepareStatement("INSERT INTO PROJECT (name, TIME_OF_CREATION, COMPANY_ID,CUSTOMER_ID)" +
+                createSt = connection.prepareStatement("INSERT INTO PROJECT (name, TIME_OF_CREATION,customer_id,company_id)" +
                         " VALUES (?, ?, ?,?)");
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -46,7 +46,7 @@ public class ProjectCrudService {
     static {
         try {
             readSt = connection
-                    .prepareStatement("SELECT id, TIME_OF_CREATION, CUSTOMER_ID, COMPANY_ID FROM PROJECT WHERE id = ?");
+                    .prepareStatement("SELECT ID, TIME_OF_CREATION, CUSTOMER_ID, COMPANY_ID FROM PROJECT WHERE id = ?");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -102,7 +102,7 @@ public class ProjectCrudService {
     static {
         try {
             getAllProjects = connection
-                    .prepareStatement("SELECT id, TIME_OF_CREATION, CUSTOMER_ID, COMPANY_ID, NAME FROM PROJECT");
+                    .prepareStatement("SELECT ID, TIME_OF_CREATION, CUSTOMER_ID, COMPANY_ID, NAME FROM PROJECT");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -178,7 +178,7 @@ public class ProjectCrudService {
 
         List<Project> result = new ArrayList<Project>();
         while ((resultSet.next())) {
-            Project project = new Project(resultSet.getString("Name"),
+            Project project = new Project(resultSet.getLong("id"),resultSet.getString("Name"),
                     resultSet.getString("time_of_creation"), resultSet.getLong("customer_id"),
                     resultSet.getLong("company_id"));
             result.add(project);

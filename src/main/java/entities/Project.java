@@ -20,4 +20,12 @@ public @Data class Project {
         this.customer = customer;
         this.company = company;
     }
+
+    public Project(long id, String name, String timeOfCreation, long customer, long company) {
+        this.id = id;
+        this.name = name;
+        this.timeOfCreation = timeOfCreation;
+        this.customer = customer;
+        this.company = company;
+    }
 }

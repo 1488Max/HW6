@@ -190,7 +190,7 @@ public class Servlet extends HttpServlet {
         String name = request.getParameter("name");
         String surname = request.getParameter("surname");
 
-        Customer customer = new Customer(name, surname);
+        Customer customer = new Customer(id,name, surname);
         CustomerCrudService.updateCustomer(customer);
         response.sendRedirect("ViewCustomer.jsp");
 
@@ -248,7 +248,7 @@ public class Servlet extends HttpServlet {
         long customerId = Long.parseLong(request.getParameter("customer"));
         long companyId = Long.parseLong(request.getParameter("customer"));
 
-        ProjectCrudService.updateProject(new Project(name, timeOfCreation, customerId, companyId));
+        ProjectCrudService.updateProject(new Project(id ,name, timeOfCreation, customerId, companyId));
         response.sendRedirect("ViewProject.jsp");
 
     }

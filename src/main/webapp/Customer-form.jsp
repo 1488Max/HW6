@@ -53,7 +53,7 @@
 
                     <fieldset class="form-group">
                         <label>Customer Surname</label> <input type="text"
-                                                               value="<c:out value='${customer.sex}' />"
+                                                               value="<c:out value='${customer.surname}' />"
                                                                class="form-control"
                                                                name="surname">
                     </fieldset>
